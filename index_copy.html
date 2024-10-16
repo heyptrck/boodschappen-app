@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Boodschappenlijstje</title>
+    <link rel="stylesheet" href="styles_3.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="script_5.js" defer></script>
+  </head>
+
+  <body>
+    <section>
+      <h1>Boodschappen app</h1>
+      <p>Neem je boodschappenlijstje mee onderweg!</p>
+      <div id="container">
+        <div id="input">
+          <select id="userInput" required>
+            <option value="Appels">Appels</option>
+            <option value="Bananen">Bananen</option>
+            <option value="Kipfilet">Kipfilet</option>
+            <option value="Rijst">Rijst</option>
+            <option value="Brood">Brood</option>
+          </select>
+          <input type="number" id="productAmount" placeholder="Hoeveelheid" />
+          <select id="productMetric" required>
+            <!-- <option value="liter">ml</option> -->
+            <option value="kg">kg</option>
+          </select>
+          <button id="addButton">Add</button>
+        </div>
+        <div id="controls">
+          <!-- <button id="export">
+            <span class="material-symbols-outlined">save_alt</span>
+          </button> -->
+        </div>
+        <div id="todolist"></div>
+        <div id="total">
+          <div>
+            <span id="total-price"></span>
+          </div>
+          <div>
+            <button id="export">
+            <span class="material-symbols-outlined">save_alt</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

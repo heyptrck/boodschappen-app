@@ -1,0 +1,176 @@
+:root {
+  --blue: #a7c7e7;
+  --green: #50c878;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+  /* border: 1px solid black; */
+}
+
+body {
+  background: var(--blue);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1,
+p {
+  text-align: center;
+}
+
+#container {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+#input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+#userInput,
+#productAmount,
+#productMetric {
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+  border: 2px solid #d3d3d3;
+  outline: none;
+  transition: border-color 0.3s ease;
+  max-height: 50px;
+}
+
+#userInput,
+#productAmount {
+  max-width: 175px;
+}
+
+select {
+  color: grey;
+  min-width: 125px;
+}
+
+#userInput:focus,
+#productAmount:focus,
+#productMetric:focus {
+  border-color: orange;
+}
+
+#addButton {
+  min-width: 50px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+  text-align: center;
+  background-color: orange;
+  color: #fff;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border: 2px solid transparent;
+  outline: none;
+}
+
+#addButton:hover {
+  cursor: pointer;
+  background-color: darkorange;
+}
+
+#addButton:focus {
+  border-color: orange;
+  box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.3);
+}
+
+#todolist {
+  width: 100%;
+  padding: 0.65rem;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+  padding: 0.35rem;
+  user-select: none;
+  /* border-bottom: 1px solid #eaeaea; */
+}
+
+#todolist input:hover,
+label:hover {
+  cursor: pointer;
+}
+
+label {
+  margin-left: 0;
+}
+
+.todo-item .price {
+  margin-left: 2rem;
+}
+
+#todolist .material-symbols-outlined {
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 22px;
+  transition: color 0.3s;
+}
+
+.todo-item input {
+  margin-right: 15px;
+  font-size: 22px;
+}
+
+input:checked + .todoLabel {
+  text-decoration: line-through;
+  color: grey;
+}
+
+#total {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #f9fafb;
+  padding: 0.65rem;
+  text-align: center;
+  background-color: #f9fafb;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+}
+
+#total div {
+  padding: 0.35rem;
+}
+
+#total div .material-symbols-outlined {
+  vertical-align: middle;
+  font-size: 26px;
+  color: #374151;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#total div .material-symbols-outlined:hover {
+  color: #1f2937;
+  transform: scale(1.1);
+}
+
+#total div button {
+  border: none;
+  background: none;
+}
