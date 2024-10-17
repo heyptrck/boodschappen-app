@@ -34,6 +34,13 @@ p {
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.45s ease-in-out;
+}
+
+#container.animate-up {
+  transform: translateY(0); 
 }
 
 #input {
@@ -103,9 +110,11 @@ select {
 .todo-item {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   margin-bottom: 5px;
   padding: 0.35rem;
   user-select: none;
+  position: relative;
   /* border-bottom: 1px solid #eaeaea; */
 }
 
@@ -114,12 +123,20 @@ label:hover {
   cursor: pointer;
 }
 
+.todo-item input {
+  margin-right: 10px;
+  font-size: 22px;
+}
+
 label {
   margin-left: 0;
+  margin-right: 10px;
 }
 
 .todo-item .price {
-  margin-left: 2rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #todolist .material-symbols-outlined {
@@ -127,11 +144,8 @@ label {
   cursor: pointer;
   font-size: 22px;
   transition: color 0.3s;
-}
-
-.todo-item input {
-  margin-right: 15px;
-  font-size: 22px;
+  position: absolute;
+  right: 10px; /* Stick to the right side */
 }
 
 input:checked + .todoLabel {
@@ -156,7 +170,7 @@ input:checked + .todoLabel {
   padding: 0.35rem;
 }
 
-#total div .material-symbols-outlined {
+#total div .standard {
   vertical-align: middle;
   font-size: 26px;
   color: #374151;
@@ -165,8 +179,22 @@ input:checked + .todoLabel {
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-#total div .material-symbols-outlined:hover {
+#total div .standard:hover {
   color: #1f2937;
+  transform: scale(1.1);
+}
+
+#total div .delete {
+  vertical-align: middle;
+  font-size: 26px;
+  color: #e74c3c;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#total div .delete:hover {
+  color: #c0392b;
   transform: scale(1.1);
 }
 
