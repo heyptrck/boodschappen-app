@@ -137,16 +137,15 @@ const createTaskCard = () => {
 
   productAmount.value = "";
 
-  totalPriceSpan.textContent = `Total Price: €${totalPrice.toFixed(2)}`;
+  totalPriceSpan.textContent = `Totaal: €${totalPrice.toFixed(2)}`;
   console.log(todoList.innerHTML);
-  alert(todoList.innerHTML);
 
   //event listener toevoegen voor delete knop - captures taskItem from function scope
   deleteButton.addEventListener("click", () => {
     taskItem.remove();
     console.log("prijs check", totalPrice, cardPrice)
     totalPrice -= cardPrice;
-    totalPriceSpan.textContent = `Total Price: €${totalPrice.toFixed(2)}`;
+    totalPriceSpan.textContent = `Totaal: €${totalPrice.toFixed(2)}`;
     if (!todoList.hasChildNodes()) {
         totalDiv.style.display = "none";
         toDoCounter = 0;
@@ -282,5 +281,17 @@ deleteButton.addEventListener("click", () => {
   totalPrice = 0;
   toDoCounter = 0;
   totalDiv.style.display = "none";
+  }
+});
+
+const sortable = new Sortable(todoList, {
+  animation: 150,  // Adds a smooth dragging animation
+  ghostClass: 'dragging',  // Adds a class to the dragged item
+  onStart: (evt) => {
+    document.body.style.cursor = 'grabbing';
+  },
+  onEnd: (event) => {
+    document.body.style.cursor = '';
+    console.log('Dragged item from', event.oldIndex, 'to', event.newIndex);
   }
 });

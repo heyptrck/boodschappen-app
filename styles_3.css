@@ -1,6 +1,22 @@
 :root {
   --blue: #a7c7e7;
   --green: #50c878;
+  --background-peach: #E1AF83;
+
+  /* primary cart color */
+  --primary-cart: #2C3E50; 
+
+  /* fruit colors */
+  --apple-red: #E74C3C;
+  --tomato-red: #FF6B6B;
+  --orange: #F39C12;
+
+  /* for a minimalist background */
+  --shoppingcart-grey: #ECF0F1;
+  /* for accents or hover states */
+  --soft-blue: #3498DB;
+  /* for buttons or highlights */
+  --pastel-green: #2ECC71;
 }
 
 * {
@@ -112,25 +128,32 @@ select {
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 5px;
-  padding: 0.35rem;
+  padding: 1rem;
   user-select: none;
   position: relative;
-  /* border-bottom: 1px solid #eaeaea; */
+  border-radius: 10px;
+  border: 0.5px solid var(--shoppingcart-grey);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  cursor: grab;
 }
 
-#todolist input:hover,
-label:hover {
+.dragging {
+  opacity: 0.6;
+  background-color: #f0f0f0;
+  border: 2px dashed #ccc;
+}
+
+.todo-item:active {
+  cursor: grabbing;
+}
+
+.todo-item input, label {
   cursor: pointer;
 }
 
 .todo-item input {
   margin-right: 10px;
   font-size: 22px;
-}
-
-label {
-  margin-left: 0;
-  margin-right: 10px;
 }
 
 .todo-item .price {
@@ -145,7 +168,7 @@ label {
   font-size: 22px;
   transition: color 0.3s;
   position: absolute;
-  right: 10px; /* Stick to the right side */
+  right: 10px;
 }
 
 input:checked + .todoLabel {
