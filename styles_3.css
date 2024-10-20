@@ -63,7 +63,6 @@ p {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 1rem;
 }
 
 #userInput,
@@ -121,6 +120,7 @@ select {
 #todolist {
   width: 100%;
   padding: 0.65rem;
+  margin: 1rem 0;
 }
 
 .todo-item {

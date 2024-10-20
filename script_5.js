@@ -39,7 +39,7 @@ const supermarketProducts = {
   Rijst: {
     name: "Rijst",
     category: "Grains",
-    pricePerPiece: 1,
+    pricePerPiece: null,
     pricePerKg: 1.5,
     inStock: true,
   },
@@ -285,8 +285,8 @@ deleteButton.addEventListener("click", () => {
 });
 
 const sortable = new Sortable(todoList, {
-  animation: 150,  // Adds a smooth dragging animation
-  ghostClass: 'dragging',  // Adds a class to the dragged item
+  animation: 150,
+  ghostClass: 'dragging',
   onStart: (evt) => {
     document.body.style.cursor = 'grabbing';
   },
