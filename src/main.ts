@@ -1,3 +1,5 @@
+import Sortable, { SortableEvent } from "sortablejs";
+
 // get elements from HTML
 const userInput = document.getElementById("userInput") as HTMLOptionElement;
 const productAmount = document.getElementById(
@@ -14,7 +16,7 @@ const totalPriceSpan = document.getElementById("total-price") as HTMLElement;
 const uploadButton = document.getElementById("upload") as HTMLButtonElement;
 const uploadFileInput = document.getElementById(
   "uploadFile"
-) as HTMLButtonElement;
+) as HTMLInputElement;
 const deleteButton = document.getElementById("delete-all") as HTMLButtonElement;
 let totalPrice: number = 0;
 let toDoCounter: number = 0;
@@ -75,17 +77,18 @@ const supermarketProducts: ProductSelection = {
   },
 };
 
-const getPrice = () => {
+const getPrice = (): number => {
   let productValue: string = userInput.value;
   let amountValue: string = productAmount.value;
   let metricValue: string = productMetric.value;
+  let cardPrice: number = 0;
 
   if (supermarketProducts.hasOwnProperty(productValue)) {
     let selectedProduct = supermarketProducts[productValue];
 
     if (metricValue === "kg" && selectedProduct.pricePerKg) {
       let pricePerKg: number = selectedProduct.pricePerKg;
-      let cardPrice: number = pricePerKg * Number(amountValue);
+      cardPrice = pricePerKg * Number(amountValue);
       totalPrice += cardPrice;
       console.log(`Price per kg for ${productValue}: €${pricePerKg}`);
       console.log(`Total price is now €${totalPrice.toFixed(2)}`);
@@ -97,9 +100,8 @@ const getPrice = () => {
       totalPrice += cardPrice;
       return cardPrice;
     }
-  } else {
-    console.log(`Product not found: ${productValue}`);
   }
+  return cardPrice;
 };
 
 function generateId(baseId: string): string {
@@ -113,8 +115,8 @@ const createTaskCard = (): void => {
   let productValue: string = userInput.value;
   let amountValue: string = productAmount.value;
   let metricValue: string = productMetric.value;
-  
-  const cardPrice = getPrice().toFixed(2);
+
+  const cardPrice: number = getPrice();
 
   if (!amountValue) {
     alert("Vul een hoeveelheid in!");
@@ -198,9 +200,11 @@ const exportToJSON = (): void => {
   todoItems.forEach((el) => {
     const label = el.querySelector<HTMLElement>(".todoLabel")?.innerText;
     const [task, amountAndMetric] = label ? label.split(", ") : ["", ""]; // Handle potential null values - label tekst splitten op ", " en creëer daar 2 variabelen voor met destructuring assignment over elke Node
-    const [amount, metric] = amountAndMetric ? amountAndMetric.split(" ") : ["", ""]; // hetzelfde voor amount en metric
+    const [amount, metric] = amountAndMetric
+      ? amountAndMetric.split(" ")
+      : ["", ""]; // hetzelfde voor amount en metric
 
-    const price = el.querySelector<HTMLElement>(".price")?.innerText;
+    const price = el.querySelector<HTMLElement>(".price")?.innerText!;
 
     tasks.push({
       task: task,
@@ -227,7 +231,7 @@ const exportToJSON = (): void => {
   URL.revokeObjectURL(url);
 };
 
-const loadTasksFromJSON = (tasks) => {
+const loadTasksFromJSON = (tasks: Task[]): void => {
   tasks.forEach((task) => {
     userInput.value = task.task;
     productAmount.value = task.amount;
@@ -277,7 +281,7 @@ userInput.addEventListener("change", () => {
 });
 
 window.addEventListener("load", () => {
-  const mainContainer = document.getElementById("container");
+  const mainContainer = document.getElementById("container") as HTMLElement;
   mainContainer.className = "animate-up";
 });
 
@@ -285,15 +289,16 @@ uploadButton.addEventListener("click", () => {
   uploadFileInput.click();
 });
 
-uploadFileInput.addEventListener("change", (event) => {
-  const file = event.target.files[0]; // Access the first file (should be only one)
+uploadFileInput.addEventListener("change", (event: Event) => {
+  const input = event.target as HTMLInputElement;
+  const file = input.files ? input.files[0] : null; // Access the first file (should be only one)
 
   if (file) {
     const reader = new FileReader(); // Create a new FileReader to read the file contents
 
     // Define what happens when the file is successfully read
-    reader.onload = (e) => {
-      const content = e.target.result; // Get the file content
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      const content = e.target?.result as string; // Get the file content
       try {
         const tasks = JSON.parse(content); // Parse the JSON content into an array of tasks
         loadTasksFromJSON(tasks); // Call a function to populate the tasks in the to-do list
